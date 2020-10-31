@@ -24,7 +24,7 @@ all: blink.elf
 
 #additional rules for files
 
-blink.elf: ${COMMON_OBJECTS} blinkMain.o stateMachines.o led.o wdInterruptHandler.o ../lib/libTimer.a
+blink.elf: ${COMMON_OBJECTS} blinkMain.o stateMachines.o led.o wdInterruptHandler.o buzzerStateMachines.o buzzer.o  ../lib/libTimer.a
 
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
@@ -44,10 +44,10 @@ clean:
 
 led.o: led.c led.h
 
+buzzer.o: buzzer.c buzzer.h
 
+wdInterruptHandler.o: stateMachines.h buzzerStateMachines.h
 
-wdInterruptHandler.o: stateMachines.h
-
-
+buzzerStateMachines.o: buzzerStateMachines.h buzzer.h
 
 stateMachines.o: led.h stateMachines.h

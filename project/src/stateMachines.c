@@ -55,6 +55,25 @@ void dim_red_25()
   led_changed = changed;
   led_update();
 }
+void dim_red_50(){
+  static char state = 0;
+  char changed = 0;
+
+  switch(state){
+  case 0:
+    tgl_red_on();
+    state = 1;
+    changed =1;
+    break;
+  case 1:
+    tgl_red_off();
+    state = 0;
+    changed = 1;
+    break;
+  }
+  led_changed = changed;
+  led_update();
+}
 
 void dim_red_75()
 {
@@ -98,12 +117,16 @@ void state_advance()
     case 2:
       dim_red_75();
       break;
+    case 3:
+      dim_red_50();
+      break;
     }
+    
     led_changed = 1;
     led_update();
   }
   else{
-    if(state == 2){
+    if(state == 3){
       state  = 1;
       count = 0;
     }else{

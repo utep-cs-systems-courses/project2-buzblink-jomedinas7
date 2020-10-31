@@ -2,6 +2,7 @@
 #include "stateMachines.h"
 #include "led.h"
 
+char button_state = 0;
 
 void tgl_red_on()
 {

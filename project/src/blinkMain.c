@@ -8,6 +8,7 @@
 
 #include "buzzer.h"
 
+#include "switches.h"
 
 int main(void) {
 
@@ -15,7 +16,7 @@ int main(void) {
 
   led_init();
   buzzer_init();
-
+  switch_init();
   enableWDTInterrupts();/* enable periodic interrupt */
 
 

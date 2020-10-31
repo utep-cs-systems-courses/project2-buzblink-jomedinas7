@@ -1,22 +1,55 @@
 # makfile configuration
-COMMON_OBJECTS  = 
+
+COMMON_OBJECTS  =
+
 CPU             = msp430g2553
+
 CFLAGS          = -mmcu=${CPU} -I../h
+
 LDFLAGS		= -L/opt/ti/msp430_gcc/include
 
+
+
 #switch the compiler (for the internal make rules)
+
 CC              = msp430-elf-gcc
+
 AS              = msp430-elf-as
 
-all: button.elf 
 
-#additional rules for files
-button.elf: ${COMMON_OBJECTS} p1_interrupt_handler.o led.o switches.o buttonMain.o ../lib/libTimer.a
+
+all: blink.elf
+
+
+
+#additional rules for file
+
+blink.elf: ${COMMON_OBJECTS} p1_interrupt_handler.o buttonMain.o stateMachines.o led.o switches.o wdInterruptHandler.o ../lib/libTimer.a
+
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
-load: button.elf
-	msp430loader.sh button.elf
+
+
+load: blink.elf
+
+	msp430loader.sh blink.elf
+
+
 
 clean:
+
 	rm -f *.o *.elf
 
+
+
+led.o: led.c led.h
+
+
+
+wdInterruptHandler.o: stateMachines.h led.h switches.h
+
+switches.o: switches.h led.h
+
+p1_interrupt_handler.o: switches.h
+
+stateMachines.o: led.h stateMachines.h

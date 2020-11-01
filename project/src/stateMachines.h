@@ -3,4 +3,5 @@
 
 extern char button_state;
 void state_advance();
+void both_lights();
 #endif // included

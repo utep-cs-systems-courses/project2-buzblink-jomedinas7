@@ -136,4 +136,40 @@ void state_advance()
   }
 }
 
+void both_lights()
+{
+  static char b_count = 0;
+  static char b_state = 1;
+  if(++b_count != 250){
+    switch(b_state){
+    case 1:
+      red_on = 0;
+      green_on = 0;
+      break;
+    case 2:
+      red_on = 1;
+      break;
+    case 3:
+      green_on =1;
+      break;
+    case 4:
+      red_on = 0;
+      green_on = 0;
+      break;
+    case 5:
+      red_on = 1;
+      green_on = 1;
+      break;
+    }
+    led_changed =1;
+    led_update();
+  }else{
+    if(b_state == 5){
+      b_state = 1;
+      b_count = 1;
+    }else{
+      b_state++;
+    }
+  }
+}
 

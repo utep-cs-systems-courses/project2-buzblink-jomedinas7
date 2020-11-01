@@ -44,7 +44,7 @@ clean:
 
 led.o: led.c led.h
 
-buzzer.o: buzzer.c buzzer.h
+buzzer.o: buzzer.h
 
 wdInterruptHandler.o: stateMachines.h buzzerStateMachines.h led.h buzzer.h switches.h
 

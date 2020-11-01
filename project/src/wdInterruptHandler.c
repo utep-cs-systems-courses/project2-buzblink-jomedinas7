@@ -21,10 +21,14 @@ __interrupt_vec(WDT_VECTOR) WDT(){/* 250 interrupts/sec */
       break;
     case 2:
       blink_count = 0;
+      both_lights();
       play_song();
       break;
     case 3:
       buzzer_set_period(0);
+      tgl_red_off();
+      tgl_green_off();
+      led_changed = 1;
       blink_count = 0;
       break;
     case 4:

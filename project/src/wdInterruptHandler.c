@@ -14,7 +14,7 @@ __interrupt_vec(WDT_VECTOR) WDT(){/* 250 interrupts/sec */
   static char blink_count = 0;
 
   if(++blink_count != 250){
-    switch(button_state){
+    switch(button){
     case 1:
       blink_count = 0;
       state_advance();

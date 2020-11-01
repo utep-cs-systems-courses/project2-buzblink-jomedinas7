@@ -2,7 +2,6 @@
 #include "stateMachines.h"
 #include "led.h"
 
-char button_state = 0;
 
 void tgl_red_on()
 {
@@ -28,6 +27,7 @@ void tgl_green_off()
   led_update();
 }
 
+//will dim red light to 25% brightness
 void dim_red_25()
 {
   static char state = 0;
@@ -56,6 +56,7 @@ void dim_red_25()
   led_changed = changed;
   led_update();
 }
+//will dim red light to 50%
 void dim_red_50(){
   static char state = 0;
   char changed = 0;
@@ -76,6 +77,7 @@ void dim_red_50(){
   led_update();
 }
 
+//will dim red light to 75%
 void dim_red_75()
 {
   static char state = 0;
@@ -105,7 +107,7 @@ void dim_red_75()
   led_update();
 }
 
-
+//will progress through 25%,50%, and 75% dimness 
 void state_advance()
 {
   static char count = 0;
@@ -127,15 +129,17 @@ void state_advance()
     led_update();
   }
   else{
+    //start states loop over
     if(state == 3){
       state  = 1;
       count = 0;
     }else{
+      //advance state
       state++;
     }
   }
 }
-
+//will cycle red and green LEDs through pattern
 void both_lights()
 {
   static char b_count = 0;
@@ -164,10 +168,12 @@ void both_lights()
     led_changed =1;
     led_update();
   }else{
+    //if in final state, start loop over
     if(b_state == 5){
       b_state = 1;
       b_count = 1;
     }else{
+      //advance to next state
       b_state++;
     }
   }

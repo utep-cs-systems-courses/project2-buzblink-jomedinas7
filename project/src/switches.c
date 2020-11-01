@@ -4,7 +4,7 @@
 #include "led.h"
 
 
-char switch1_state_down, switch2_state_down, switch3_state_down, switch4_state_down, switch_state_changed; /* effectively boolean */
+char switch1_state_down, switch2_state_down, switch3_state_down, switch4_state_down, switch_state_changed,button; /* effectively boolean */
 
 
 
@@ -41,25 +41,25 @@ switch_interrupt_handler()
   switch3_state_down = (p2val & SW3) ? 0 : 1;
 
   switch4_state_down = (p2val & SW4) ? 0 : 1;
-
+  //the button to be pressed will go into a button_state to be used in the interrupt
   if(switch1_state_down){
 
-    button_state = 1;
+    button = 1;
 
   }
 
   if(switch2_state_down){
 
-    button_state = 2;
+    button = 2;
   }
 
   if(switch3_state_down){
 
-    button_state = 3;
+    button = 3;
   }
 
   if(switch4_state_down){
 
-    button_state = 4;
+    button= 4;
   }
 }
